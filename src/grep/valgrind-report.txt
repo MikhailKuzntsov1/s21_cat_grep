@@ -1,0 +1,68 @@
+==82019== Memcheck, a memory error detector
+==82019== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==82019== Using Valgrind-3.19.0.GIT-lbmacos-6ff08b6e31-20220212 and LibVEX; rerun with -h for copyright info
+==82019== Command: ./s21_grep
+==82019== Parent PID: 80771
+==82019== 
+--82019-- 
+--82019-- Valgrind options:
+--82019--    --leak-check=full
+--82019--    --show-leak-kinds=all
+--82019--    --track-origins=yes
+--82019--    --verbose
+--82019--    --log-file=valgrind-report.txt
+--82019-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--82019--   Darwin Kernel Version 20.6.0: Tue Feb 22 21:10:41 PST 2022; root:xnu-7195.141.26~1/RELEASE_X86_64
+--82019-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--82019-- Page sizes: currently 4096, max supported 4096
+--82019-- Valgrind library directory: /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind
+--82019-- ./s21_grep (rx at 0x100000000, rw at 0x100004000)
+--82019--    reading syms   from primary file (28 2)
+--82019-- run: /usr/bin/dsymutil "./s21_grep"
+--82019--    dsyms= ./s21_grep.dSYM/Contents/Resources/DWARF/s21_grep
+--82019-- /usr/lib/dyld (rx at 0x100010000, rw at 0x1000ac000)
+--82019--    reading syms   from primary file (5 2905)
+--82019-- Scheduler: using generic scheduler lock implementation.
+--82019-- Reading suppressions file: /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp
+==82019== embedded gdbserver: reading from /var/folders/zz/zyxvpxvq6csfxvn_n00025gr000jby/T//vgdb-pipe-from-vgdb-to-82019-by-posidoni-on-???
+==82019== embedded gdbserver: writing to   /var/folders/zz/zyxvpxvq6csfxvn_n00025gr000jby/T//vgdb-pipe-to-vgdb-from-82019-by-posidoni-on-???
+==82019== embedded gdbserver: shared mem   /var/folders/zz/zyxvpxvq6csfxvn_n00025gr000jby/T//vgdb-pipe-shared-mem-vgdb-82019-by-posidoni-on-???
+==82019== 
+==82019== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==82019== don't want to do, unless you know exactly what you're doing,
+==82019== or are doing some strange experiment):
+==82019==   /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=82019 ...command...
+==82019== 
+==82019== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==82019==   /path/to/gdb ./s21_grep
+==82019== and then give GDB the following command
+==82019==   target remote | /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=82019
+==82019== --pid is optional if only one valgrind process is running
+==82019== 
+--82019-- REDIR: 0x100068c00 (dyld:strcmp) redirected to 0x258058676 (???)
+--82019-- REDIR: 0x100062b74 (dyld:arc4random) redirected to 0x258058714 (???)
+--82019-- REDIR: 0x100067fe0 (dyld:strlen) redirected to 0x258058645 (???)
+--82019-- REDIR: 0x100068f00 (dyld:strcpy) redirected to 0x258058692 (???)
+--82019-- REDIR: 0x100066017 (dyld:strcat) redirected to 0x258058656 (???)
+--82019-- REDIR: 0x100067dc7 (dyld:strlcat) redirected to 0x2580586af (???)
+==82019== Warning: set address range perms: large range [0x7fff20443000, 0x800020243000) (defined)
+==82019== Warning: set address range perms: large range [0x7fff20443000, 0x7fff7fdeb000) (defined)
+==82019== Warning: set address range perms: large range [0x7fff8e6a7000, 0x7fffc0443000) (noaccess)
+==82019== Warning: set address range perms: large range [0x7fffc0443000, 0x7fffe3307000) (defined)
+==82019== Warning: set address range perms: large range [0x7fffe3307000, 0x7fffffe00000) (noaccess)
+--82019-- /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x100128000, rw at 0x10012c000)
+--82019--    reading syms   from primary file (3 54)
+--82019--    dSYM= /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--82019-- /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x100134000, rw at 0x10013c000)
+--82019--    reading syms   from primary file (75 63)
+--82019--    dSYM= /Users/posidoni/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--82019-- /usr/local/lib/gcc/10/libgcc_s.1.dylib (rx at 0x100144000, rw at 0x10015c000)
+--82019--    reading syms   from primary file (159 1243)
+==82019== 
+==82019== HEAP SUMMARY:
+==82019==     in use at exit: 0 bytes in 0 blocks
+==82019==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==82019== 
+==82019== All heap blocks were freed -- no leaks are possible
+==82019== 
+==82019== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
