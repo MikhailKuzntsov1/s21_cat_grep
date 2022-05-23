@@ -4,13 +4,12 @@
 * [General info](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#general-info)
 * [Goal & requirements](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#goal--requirements)
 * [Key learnings](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#key-learnings)
-* [Build & usage](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#build--usage)
-   * [Build](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#build)
-* [s21_cat] (https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat)
+* [Build](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#build)
+* [s21_cat](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat)
    * [s21_cat usage](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat-usage)
    * [s21_cat options](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat-options)
    * [s21_cat tests](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat-integration-tests)
-* [s21_grep] (https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep)
+* [s21_grep](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep)
    * [s21_grep usage](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep-usage)
    * [s21_grep options](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep-options)
    * [s21_grep tests](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep-integration-tests)
@@ -32,10 +31,13 @@ implement linked list API for storing all collected grep patterns with `-f` and 
 ## Key learnings
 - Working with regular expressions in C
 - Files IO in C
-- `Errno & error handling in C
+- Errno & error handling in C
 - grep / cat usage knowledge
 - PCRE syntax
 - Working with `argv / argc`, CLI args parsing
+
+<div align="center"><img src="assets/s21_grep_sample.png"></div>
+<div align="center"><sub>s21_grep usage example</sub></div>
 
 ## Build
 
@@ -71,8 +73,8 @@ Integration tests are launched via python script 's21_cat_test.py'. Before launc
 $ python3 cat/s21_cat_tests.py
 ```
 
-<div align="center"><img src="assets/s21_cat_tests.gif"></div>
-<div align="center"><sub>s21_cat integration tests</sub></div>
+<div align="center"><img src="assets/s21_cat_sample.png"></div>
+<div align="center"><sub>s21_cat usage example</sub></div>
 
 ## S21_grep
 
