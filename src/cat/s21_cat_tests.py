@@ -44,15 +44,13 @@ def check_files(a, b):
                     if a[i] != b[i]:
                         break
 
-                print("\n\nОШИБКА!!!!\n\n")
                 print("===============A===============")
                 print(a[max(0, i-50):min(len(a), i+50)])
                 print("===============B===============")
                 print(b[max(0, i-50):min(len(b), i+50)])
                 print("===============================")
-                print("Строка:", count, " символ:", i)
-                input("Нажмите для продолжения...\n")
-                print("Продолжаем!\n\n")
+                print("Line:", count, " char:", i)
+                input("Press any key to continue:\n")
 
 
 for test in range(len(all_var)):

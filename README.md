@@ -1,71 +1,57 @@
-# Simple Bash Utils
+# S21_Cat & S21_Grep
 
-Development of Bash text utilities: cat, grep.
+## Table of contents
+* [General info](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#general-info)
+* [Goal & requirements](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#goal--requirements)
+* [Key learnings](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#key-learnings)
+* [Build & usage](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#build--usage)
+   * [Build](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#build)
+* [s21_cat] (https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat)
+   * [s21_cat usage](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat-usage)
+   * [s21_cat options](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat-options)
+   * [s21_cat tests](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_cat-integration-tests)
+* [s21_grep] (https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep)
+   * [s21_grep usage](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep-usage)
+   * [s21_grep options](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep-options)
+   * [s21_grep tests](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#s21_grep-integration-tests)
+* [Credits](https://github.com/MikhailKuzntsov1/s21_cat_grep/tree/main#credits)
 
-The russian version of the task can be found in the repository.
+## General info 
 
-## Contents
+Implementation of GNU `cat` and BSD `grep` with all major flags and flags combinations.
 
-0. [Preamble](#preamble)
-1. [Chapter I](#chapter-i) \
-   1.1. [Introduction](#introduction)
-2. [Chapter II](#chapter-ii) \
-   2.1. [Information](#information)
-3. [Chapter III](#chapter-iii) \
-   3.1. [Part 1](#part-1-working-with-the-cat-utility)  
-   3.2. [Part 2](#part-2-working-with-grep-utility)  
-   3.3. [Part 3](#part-3-bonus-implementation-of-some-grep-utility-flags)  
-   3.4. [Part 4](#part-4-bonus-implementation-of-grep-utility-flag-combinations)
+## Goal & requirements
 
+The goal of this project was to learn & replicate the functionality of the GNU cat & 
+BSD grep, including all major flags and their combinations. There must be integration tests
+that compare original programs with our versions.
 
-## Preamble
+There also had to be no constant size buffers / arrays for handling files contents. Thus, I had to
+implement linked list API for storing all collected grep patterns with `-f` and `-e` flags.
 
-![simple_bash_utils](misc/eng/images/bashutils.png)
+## Key learnings
+- Working with regular expressions in C
+- Files IO in C
+- `Errno & error handling in C
+- grep / cat usage knowledge
+- PCRE syntax
+- Working with `argv / argc`, CLI args parsing
 
-It was an ordinary grey autumn day in 1993. You came home from work at Hewlett-Packard, feeling a little tired. You had a small two-room apartment on the outskirts of N town. There was a low-alcohol drink in the refrigerator called "pivo". You took that drink and a bag of crackers then went to your little nook, to your computer made by Dell.
+## Build
 
-`*Click*` - the power button was pressed. A couple of minutes of boot loading and... yeah, it feels good. You always get that feeling when you turn on a computer. A few seconds of undisturbed pleasure and you opened
-the Mosaic browser. Then you went to your favorite forum, and while drinking pivo, you read some threads. Suddenly you came across a very interesting discussion, which began with the following message:
+```
+$ git clone git@github.com:MikhailKuzntsov1/s21_cat_grep.git
+$ cd repo/src/
+$ make
+```
 
-> Hello everybody out there using minix -
->
->I'm doing a (free) operating system (just a hobby, won't be big and professional like gnu) for 386(486) AT clones. This has been brewing since april, and is starting to get ready. I'd like any feedback on things people like/dislike in minix, as my OS resembles it somewhat (same physical layout of the file-system (due to practical reasons) among other things).
->
->I've currently ported bash(1.08) and gcc(1.40), and things seem to work. This implies that I'll get something practical within a few months, and I'd like to know what features most people would want. Any suggestions are welcome, but I won't promise I'll implement them :-)
->
->Linus (torvalds@kruuna.helsinki.fi)
->
->PS. Yes - it's free of any minix code, and it has a multi-threaded fs. It is NOT portable (uses 386 task switching etc), and it probably never will support anything other than AT-harddisks, as that's all I have :-(.
->
->— Linus Torvalds
+## S21_cat
 
-"Very interesting," you thought to yourself. As you scrolled down, you noticed that bash is not that well ported, and some functions didn't work. 
-In particular, there were problems with the utilities for word processing: cat and grep.
-"Interesting task, and it would be great to help this Linus Torvalds," you said aloud and immediately wrote a message in the thread saying that you're already working on it. 
-Well, let’s start!
+### s21_cat Usage
 
-## Chapter I
+`$ s21_cat [OPTION] [FILE]...`
 
-## Introduction
-
-In this project you will learn and develop basic Bash utilities for working with C programming language texts. These utilities (cat and grep) are often used in the Linux terminal. As part of the project you’ll learn the organization of the Bash utilities and solidify knowledge of structured programming.
-
-
-## Chapter II
-
-## Information
-
-### cat History
-
-> cat was part of the early versions of Unix, e.g., Version 1, and replaced pr, a PDP-7 and Multics utility for copying a single file to the screen.
-
-### cat Usage
-
-Cat is one of the most frequently used commands on Unix-like operating systems. It has three related functions with regard to text files: displaying them, combining copies of them and creating new ones.
-
-`cat [OPTION] [FILE]...`
-
-### cat Options
+### s21_cat Options
 
 | No. | Options | Description |
 | ------ | ------ | ------ |
@@ -75,15 +61,26 @@ Cat is one of the most frequently used commands on Unix-like operating systems. 
 | 4 | -s (GNU: --squeeze-blank) | squeeze multiple adjacent blank lines |
 | 5 | -t implies -v (GNU: -T the same, but without implying -v) | but also display tabs as ^I  |
 
-### grep History
+### s21_cat integration tests
 
-> Thompson wrote the first version in PDP-11 assembly language to help Lee E. McMahon analyze the text of the Federalist Papers to determine authorship of the individual papers. The ed text editor (also authored by Thompson) had regular expression support but could not be used on such a large amount of text, so Thompson excerpted that code into a standalone tool. He chose the name because in ed, the command g/re/p would print all lines matching a specified pattern. grep was first included in Version 4 Unix. Stating that it is "generally cited as the prototypical software tool", McIlroy credited grep with "irrevocably ingraining" Thompson's tools philosophy in Unix.
+s21_cat fully replicates original GNU cat functionality, including all flags and flags combinations. 
 
-### grep Usage
+Integration tests are launched via python script 's21_cat_test.py'. Before launching tests s21_cat executable must be built. There are about ~500 possible unique tested combinations.
 
-`grep [options] template [file_name]`
+```
+$ python3 cat/s21_cat_tests.py
+```
 
-### grep Options
+<div align="center"><img src="assets/s21_cat_tests.gif"></div>
+<div align="center"><sub>s21_cat integration tests</sub></div>
+
+## S21_grep
+
+### s21_grep Usage
+
+`s21_grep [options] template [file_name]`
+
+### s21_grep Options
 
 | No. | Options | Description |
 | ------ | ------ | ------ |
@@ -98,49 +95,20 @@ Cat is one of the most frequently used commands on Unix-like operating systems. 
 | 9 | -f file | Take regexes from a file. |
 | 10 | -o | Output the matched parts of a matching line. |
 
+### s21_grep integration tests:
 
-## Chapter III
+s21_grep replicated major BSD grep (2.5.1-FreeBSD) flags and their combinations listed above. s21_grep uses PCRE syntax and regex engine provided by the developers of `regex.h`.
 
-- The programs must be developed in C language of C11 standard using gcc compiler.
-- The program code of the cat and grep must be located on the develop branch in the src/cat/ and src/grep/ folders, respectively  
-- Do not use outdated and legacy language constructions and library functions. Pay attention to the legacy and obsolete marks in the official documentation on the language and the libraries used. Use the POSIX.1-2017 standard.
-- The programs must be executable files with command line arguments
-- The programs must be built with Makefile with appropriate targets: s21_cat, s21_grep
-- If third-party libraries are used, there must be build scripts in makefile to connect/load them
-- Integration tests must cover all flag variants and input values, based on a comparison with the behavior of real Bash utilities 
-- The programs must be developed according to the principles of structured programming
-- Code duplication must be avoided, common modules must be reused between the utilities. Common modules can be moved to a separate folder src/common
-- You can use standard and non-standard C libraries, or you can use your own developed libraries from other projects
-- The statement of the message in the case of an error does not matter
-- Input via stdin is not required to be supported
+Integration tests are launched via python script 's21_grep_test.py'. Before launching tests s21_grep executable must be built. There are about ~180k tests, without `-o` flag there is full compatibility with BSD grep.
 
-## Part 1. Working with the cat utility
+```
+$ python3 cat/s21_cat_tests.py
+```
 
-You need to develop a cat utility:
-- Support of all flags (including GNU versions) specified [above](#cat-options)
-- The source, header, and build files must be placed in the src/cat/ directory
-- The resulting executable file must be placed in the directory src/cat/ and named s21_cat
+<div align="center"><img src="assets/s21_grep_tests.gif"></div>
+<div align="center"><sub>s21_grep integration tests</sub></div>
 
-## Part 2. Working with grep utility
-
-You need to develop the grep utility:
-- Support of the following flags: `-e`, `-i`, `-v`, `-c`, `-l`, `-n`
-- Only pcre or regex libraries can be used for regular expressions
-- The source, header and make files must be placed in the src/grep/ directory
-- The resulting executable file must be placed in the directory src/grep/ and named s21_grep
-
-## Part 3. Bonus. Implementation of some grep utility flags
-
-Bonus assignment for extra points. You need to develop the grep utility:
-- Support of all flags, including: `-h`, `-s`, `-f`, `-o`
-- Only pcre or regex libraries can be used for regular expressions
-- The source, header and make files must be placed in the src/grep/ directory
-- The resulting executable file must be placed in the directory src/grep/ and named s21_grep
-
-## Part 4. Bonus. Implementation of grep utility flag combinations
-
-Bonus assignment for extra points. You need to develop the grep utility:
-- Support of all flags, including their _pair_ combinations (e.g. `-iv`, `-in`)
-- Only pcre or regex libraries can be used for regular expressions
-- The source, header and make files must be placed in the src/grep/ directory
-- The resulting executable file must be placed in the directory src/grep/ and named s21_grep
+## Credits
+- Developer: [Mikhail Kuznetsov (@posidoni)](https://github.com/MikhailKuzntsov1)
+- I greatly appreciate the support of [Stepan Fedorov (@nanadaug)](https://github.com/co-cy) & others for providing great python scripts for integration testing
+- SC21 for providing this task as a part of our curriculum 🙂💚

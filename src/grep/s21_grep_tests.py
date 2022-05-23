@@ -11,7 +11,7 @@ from os import system
 # 1 или 0 останавливать тесты после ошибки или нет
 stop = 0
 # 1 или 0 показывать расшириный вывод ошибки
-more = 0
+more = 1
 # 1 или 0 если показывать в конце список комманд
 show_log = 1
 # любый символы остановки вывода
@@ -34,15 +34,14 @@ flags = [
     ('-h', 1),
     ('-s', 0),
     ('-f', 2),
-    ('-o', 0),
+#    ('-o', 0),
 ]
 
 files = [
-    'grep_file1',
-    'grep_file2',
-    'grep_file3',
-    'grep_file4',
-    'grep_file5',
+    'grep_tests/grep_file1',
+    'grep_tests/grep_file2',
+    'grep_tests/grep_file3',
+    'grep_tests/grep_file4',
 ]
 
 files_with_patterns = [] + files
@@ -141,6 +140,7 @@ def run_test(command_1: str, command_2: str) -> None:
         TEST_COUNT_FAILED += 1
     else:
         print(f'{bcolors.BOLD}{bcolors.OKBLUE}TEST{bcolors.ENDC} {bcolors.OKGREEN}{TEST_COUNT}{bcolors.ENDC}: {bcolors.OKGREEN}{"SUCCESS"}{bcolors.ENDC}{bcolors.ENDC}')
+        print(command_1)
         print()
 
     system(f"rm -f {grep_file}")
