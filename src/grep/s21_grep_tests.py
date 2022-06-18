@@ -1,4 +1,5 @@
 #!python3
+# AUTHOR: Stepan Fedorov (slack: @nanadaug, gh: https://github.com/co-cy)
 from termios import tcgetattr, tcsetattr, TCSADRAIN
 from itertools import combinations_with_replacement
 from random import randrange, choice, shuffle
